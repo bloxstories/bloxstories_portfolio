@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blox Stories | Partnerships</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #060808;
+      --panel: rgba(13, 17, 17, 0.66);
+      --panel-strong: rgba(15, 20, 20, 0.82);
+      --line: rgba(255, 255, 255, 0.1);
+      --line-soft: rgba(255, 255, 255, 0.065);
+      --line-bright: rgba(174, 205, 103, 0.58);
+      --text: #f0f3ed;
+      --muted: #b8beb4;
+      --soft: #7d8579;
+      --green: #a8c957;
+      --orange: #ff6b22;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 72% 12%, rgba(255, 123, 44, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(6, 8, 8, 0.86), rgba(6, 8, 8, 0.98)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.014) 0, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.01) 0, rgba(255, 255, 255, 0.01) 1px, transparent 1px, transparent 80px),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .shell {
+      width: min(1516px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 7, 8, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 220px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255, 255, 255, 0.88);
+      border-radius: 8px;
+      color: var(--text);
+      transform: rotate(45deg);
+    }
+
+    .brand-mark i,
+    .brand-mark svg {
+      width: 21px;
+      height: 21px;
+      transform: rotate(-45deg);
+    }
+
+    .brand-title {
+      display: block;
+      font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(24px, 4vw, 58px);
+      color: #d8dcd4;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 24px 0 21px;
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      height: 2px;
+      background: var(--green);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid rgba(174, 205, 103, 0.38);
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .lang-button {
+      min-width: 34px;
+      min-height: 30px;
+      border: 0;
+      border-radius: 3px;
+      color: #d8dcd4;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .lang-button.is-active {
+      color: #071009;
+      background: var(--green);
+    }
+
+    .contact-button,
+    .outline-button {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-bright);
+      border-radius: 5px;
+      padding: 0 28px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: rgba(168, 201, 87, 0.03);
+    }
+
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6, 8, 8, 0.98) 0%, rgba(6, 8, 8, 0.82) 33%, rgba(6, 8, 8, 0.34) 62%, rgba(6, 8, 8, 0.86) 100%),
+        url("./assets/hero-scene.png") right 46% / min(1180px, 70vw) auto no-repeat;
+      opacity: 0.98;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      min-height: 238px;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      padding: 22px 0 14px;
+    }
+
+    .hero-title {
+      margin: 0;
+      color: #eef1eb;
+      font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+      font-size: clamp(46px, 4.2vw, 58px);
+      font-weight: 700;
+      line-height: 0.94;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.72);
+    }
+
+    .hero-title .green-text {
+      color: var(--green);
+    }
+
+    .hero-copy,
+    .hero-note {
+      max-width: 520px;
+      margin: 14px 0 0;
+      color: #e0e4dc;
+      font-size: 16px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-note {
+      margin-top: 10px;
+      color: #cfd5ca;
+    }
+
+    .accent-line {
+      width: 34px;
+      height: 2px;
+      margin-top: 16px;
+      background: var(--green);
+    }
+
+    main {
+      padding: 12px 0 22px;
+    }
+
+    .options-title {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 0 0 10px;
+      color: #f4f6ef;
+      font-size: 22px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .options-title::before,
+    .options-title::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168, 201, 87, 0.75));
+    }
+
+    .options-title::after {
+      background: linear-gradient(90deg, rgba(168, 201, 87, 0.75), transparent);
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .plan-card,
+    .factor-strip,
+    .cta-strip {
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 30%),
+        linear-gradient(180deg, rgba(16, 21, 21, 0.78), rgba(8, 12, 12, 0.64));
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.025);
+      backdrop-filter: blur(9px);
+    }
+
+    .plan-card {
+      padding: 24px 48px 20px;
+    }
+
+    .plan-head {
+      display: grid;
+      grid-template-columns: 74px 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .plan-icon {
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(168, 201, 87, 0.72);
+      border-radius: 50%;
+      color: var(--green);
+      background: rgba(168, 201, 87, 0.045);
+    }
+
+    .plan-icon i,
+    .plan-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke-width: 1.55;
+    }
+
+    .plan-title {
+      margin: 0;
+      color: #f4f6ef;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .plan-copy {
+      margin: 8px 0 0;
+      color: #d5dad1;
+      font-size: 15px;
+      line-height: 1.36;
+    }
+
+    .plan-badge {
+      min-width: 92px;
+      border-radius: 999px;
+      padding: 6px 18px;
+      color: var(--green);
+      background: rgba(168, 201, 87, 0.11);
+      font-size: 15px;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .plan-body {
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 38px;
+      padding: 15px 0 13px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .column + .column {
+      border-left: 1px solid var(--line);
+      padding-left: 38px;
+    }
+
+    .column-title {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .check-list,
+    .dot-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #d9ddd5;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .check-list li,
+    .dot-list li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 10px;
+      align-items: start;
+      margin-top: 2px;
+    }
+
+    .check-list i,
+    .check-list svg {
+      width: 16px;
+      height: 16px;
+      margin-top: 5px;
+      color: var(--green);
+      stroke-width: 2;
+    }
+
+    .dot-list li::before {
+      content: "•";
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .plan-metrics {
+      display: grid;
+      grid-template-columns: 1fr 32px 1fr 32px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0 12px;
+    }
+
+    .metric {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: #f0f3ed;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .metric i,
+    .metric svg {
+      width: 26px;
+      height: 26px;
+      color: var(--green);
+      stroke-width: 1.7;
+      flex-shrink: 0;
+    }
+
+    .dash {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(168, 201, 87, 0.18), rgba(168, 201, 87, 0.7), rgba(255, 255, 255, 0.26));
+    }
+
+    .plan-button {
+      width: 100%;
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(174, 205, 103, 0.64);
+      border-radius: 5px;
+      color: var(--green);
+      background: rgba(168, 201, 87, 0.025);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .plan-card--orange {
+      border-color: rgba(255, 107, 34, 0.32);
+      background:
+        radial-gradient(circle at 88% 0%, rgba(255, 107, 34, 0.13), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 30%),
+        linear-gradient(180deg, rgba(18, 20, 18, 0.78), rgba(10, 11, 10, 0.66));
+    }
+
+    .plan-card--orange .plan-head,
+    .plan-card--orange .plan-body,
+    .plan-card--orange .column + .column {
+      border-color: rgba(255, 107, 34, 0.2);
+    }
+
+    .plan-card--orange .plan-icon {
+      border-color: rgba(255, 107, 34, 0.74);
+      color: var(--orange);
+      background: rgba(255, 107, 34, 0.055);
+      box-shadow: 0 0 36px rgba(255, 107, 34, 0.08);
+    }
+
+    .plan-card--orange .plan-badge {
+      color: #ff8e53;
+      background: rgba(255, 107, 34, 0.12);
+    }
+
+    .plan-card--orange .column-title,
+    .plan-card--orange .check-list i,
+    .plan-card--orange .check-list svg,
+    .plan-card--orange .dot-list li::before,
+    .plan-card--orange .metric i,
+    .plan-card--orange .metric svg {
+      color: var(--orange);
+    }
+
+    .plan-card--orange .dash {
+      background: linear-gradient(90deg, rgba(255, 107, 34, 0.16), rgba(255, 107, 34, 0.68), rgba(255, 255, 255, 0.24));
+    }
+
+    .plan-card--orange .plan-button {
+      border-color: rgba(255, 107, 34, 0.64);
+      color: #ff8e53;
+      background: rgba(255, 107, 34, 0.025);
+    }
+
+    .factor-strip {
+      min-height: 86px;
+      display: grid;
+      grid-template-columns: 1.05fr repeat(3, 1fr);
+      align-items: center;
+      gap: 22px;
+      margin-top: 14px;
+      padding: 16px 40px;
+    }
+
+    .factor-title {
+      margin: 0;
+      color: #f4f6ef;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .factor {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 16px;
+      align-items: center;
+      min-height: 58px;
+      border-left: 1px solid var(--line);
+      padding-left: 28px;
+    }
+
+    .factor i,
+    .factor svg {
+      width: 42px;
+      height: 42px;
+      padding: 10px;
+      box-sizing: content-box;
+      border: 1px solid rgba(168, 201, 87, 0.58);
+      border-radius: 50%;
+      color: var(--green);
+      background: rgba(168, 201, 87, 0.035);
+      stroke-width: 1.55;
+    }
+
+    .factor strong {
+      display: block;
+      color: #f4f6ef;
+      font-size: 16px;
+      line-height: 1.15;
+    }
+
+    .factor span {
+      display: block;
+      margin-top: 4px;
+      color: #cbd1c7;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .cta-strip {
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      align-items: center;
+      gap: 24px;
+      margin-top: 14px;
+      padding: 18px 36px;
+    }
+
+    .cta-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #f1f5ed;
+      background: rgba(111, 131, 61, 0.48);
+    }
+
+    .cta-icon i,
+    .cta-icon svg {
+      width: 31px;
+      height: 31px;
+    }
+
+    .cta-title {
+      margin: 0;
+      color: #f4f6ef;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.18;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0 26px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    @media (max-width: 1180px) {
+      .plans,
+      .factor-strip,
+      .cta-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .factor {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding: 18px 0 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(1516px, calc(100% - 28px));
+      }
+
+      .nav {
+        height: auto;
+        padding: 14px 0;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-title {
+        font-size: 18px;
+      }
+
+      .nav-actions {
+        width: 100%;
+        margin-left: 51px;
+        justify-content: flex-start;
+      }
+
+      .nav-actions > .contact-button {
+        display: none !important;
+      }
+
+      .lang-button {
+        min-width: 30px;
+        min-height: 28px;
+      }
+
+      .hero-grid {
+        min-height: 0;
+        padding: 28px 0 18px;
+      }
+
+      .hero-title {
+        max-width: 330px;
+        font-size: 48px;
+      }
+
+      .hero-copy,
+      .hero-note {
+        max-width: 330px;
+        font-size: 16px;
+      }
+
+      .options-title {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        font-size: 20px;
+      }
+
+      .options-title::before,
+      .options-title::after {
+        display: none;
+      }
+
+      .plan-card {
+        padding: 22px 16px 18px;
+      }
+
+      .plan-head,
+      .plan-body,
+      .plan-metrics,
+      .factor-strip,
+      .cta-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-badge {
+        width: fit-content;
+      }
+
+      .column + .column {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding: 16px 0 0;
+      }
+
+      .dash {
+        display: none;
+      }
+
+      .factor-strip,
+      .cta-strip {
+        padding: 20px;
+      }
+
+      .footer-note {
+        flex-direction: column;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./assets/shared-header.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="./index.html" aria-label="Blox Stories">
+        <span class="brand-mark"><i data-lucide="box"></i></span>
+        <span>
+          <strong class="brand-title">Blox Stories</strong>
+          <span class="brand-subtitle" data-i18n="brand.subtitle">Channel Network</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation" data-i18n-aria-label="nav.ariaLabel">
+        <a href="./index.html" data-i18n="nav.home">Home</a>
+        <a href="./canais.html" data-i18n="nav.channels">Channels</a>
+        <a class="active" href="./parcerias.html" data-i18n="nav.partnerships">Partnerships</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-toggle" role="group" aria-label="Select language" data-i18n-aria-label="language.ariaLabel">
+          <button class="lang-button" type="button" data-lang="pt" aria-pressed="false">PT</button>
+          <button class="lang-button is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-button" type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="contact-button" href="mailto:partners@bloxstoriespartners.com" data-i18n="cta.top">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="shell hero-grid">
+      <div>
+        <h1 class="hero-title" data-i18n-html="hero.title">Parcerias <span class="green-text">para Marcas</span></h1>
+        <p class="hero-copy" data-i18n="hero.copy">Sua marca pode patrocinar um canal específico ou toda a nossa rede.</p>
+        <p class="hero-note" data-i18n="hero.note">Dois formatos simples. O investimento varia conforme canais, volume de inserções e formato.</p>
+        <div class="accent-line" aria-hidden="true"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <main class="shell">
+    <h2 class="options-title" data-i18n="options.title">2 opções de parceria</h2>
+
+    <section class="plans" aria-label="Planos de parceria" data-i18n-aria-label="plans.ariaLabel">
+      <article class="plan-card">
+        <div class="plan-head">
+          <span class="plan-icon"><i data-lucide="monitor-play"></i></span>
+          <div>
+            <h3 class="plan-title" data-i18n="plans.single.name">Plano Canal Único</h3>
+            <p class="plan-copy" data-i18n="plans.single.copy">Patrocínio em um canal específico.</p>
+          </div>
+          <span class="plan-badge" data-i18n="plans.single.badge">1 canal</span>
+        </div>
+
+        <div class="plan-body">
+          <div class="column">
+            <p class="column-title" data-i18n="plans.ideal">Ideal para:</p>
+            <ul class="check-list">
+              <li><i data-lucide="check-circle-2"></i><span data-i18n="plans.single.ideal1">testes</span></li>
+              <li><i data-lucide="check-circle-2"></i><span data-i18n="plans.single.ideal2">lançamentos</span></li>
+              <li><i data-lucide="check-circle-2"></i><span data-i18n="plans.single.ideal3">campanhas pontuais</span></li>
+            </ul>
+          </div>
+          <div class="column">
+            <p class="column-title" data-i18n="plans.price">O preço varia por:</p>
+            <ul class="dot-list">
+              <li><span data-i18n="plans.single.price1">canal escolhido</span></li>
+              <li><span data-i18n="plans.single.price2">nº de inserções</span></li>
+              <li><span data-i18n="plans.single.price3">formato do anúncio</span></li>
+              <li><span data-i18n="plans.single.price4">duração</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plan-metrics">
+          <span class="metric"><i data-lucide="user-round"></i><span data-i18n="plans.single.metric1">1 inserção</span></span>
+          <span class="dash"></span>
+          <span class="metric"><i data-lucide="users-round"></i><span data-i18n="plans.single.metric2">3 inserções</span></span>
+          <span class="dash"></span>
+          <span class="metric"><i data-lucide="users"></i><span data-i18n="plans.single.metric3">5+ inserções</span></span>
+        </div>
+
+        <a class="plan-button" href="mailto:partners@bloxstoriespartners.com?subject=Single%20Channel%20Plan" data-i18n="plans.single.button">Request proposal</a>
+      </article>
+
+      <article class="plan-card plan-card--orange">
+        <div class="plan-head">
+          <span class="plan-icon"><i data-lucide="network"></i></span>
+          <div>
+            <h3 class="plan-title" data-i18n="plans.network.name">Plano Network</h3>
+            <p class="plan-copy" data-i18n="plans.network.copy">Patrocínio distribuído em vários canais da rede.</p>
+          </div>
+          <span class="plan-badge" data-i18n="plans.network.badge">across the network</span>
+        </div>
+
+        <div class="plan-body">
+          <div class="column">
+            <p class="column-title" data-i18n="plans.ideal">Ideal para:</p>
+            <ul class="check-list">
+              <li><i data-lucide="check-circle-2"></i><span data-i18n="plans.network.ideal1">awareness</span></li>
+              <li><i data-lucide="check-circle-2"></i><span data-i18n="plans.network.ideal2">escala</span></li>
+              <li><i data-lucide="check-circle-2"></i><span data-i18n="plans.network.ideal3">presença contínua</span></li>
+            </ul>
+          </div>
+          <div class="column">
+            <p class="column-title" data-i18n="plans.price">O preço varia por:</p>
+            <ul class="dot-list">
+              <li><span data-i18n="plans.network.price1">nº de canais</span></li>
+              <li><span data-i18n="plans.network.price2">nº total de inserções</span></li>
+              <li><span data-i18n="plans.network.price3">mix Minecraft + Reddit Stories</span></li>
+              <li><span data-i18n="plans.network.price4">recorrência</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plan-metrics">
+          <span class="metric"><i data-lucide="users-round"></i><span data-i18n="plans.network.metric1">2 canais</span></span>
+          <span class="dash"></span>
+          <span class="metric"><i data-lucide="users"></i><span data-i18n="plans.network.metric2">4 canais</span></span>
+          <span class="dash"></span>
+          <span class="metric"><i data-lucide="globe-2"></i><span data-i18n="plans.network.metric3">rede ampla</span></span>
+        </div>
+
+        <a class="plan-button" href="mailto:partners@bloxstoriespartners.com?subject=Network%20Plan" data-i18n="plans.network.button">Talk to our team</a>
+      </article>
+    </section>
+
+    <section class="factor-strip" aria-label="Como o investimento aumenta ou diminui" data-i18n-aria-label="factors.ariaLabel">
+      <h2 class="factor-title" data-i18n="factors.title">Como o investimento aumenta ou diminui</h2>
+      <article class="factor">
+        <i data-lucide="users-round"></i>
+        <div><strong data-i18n="factors.channels.title">Mais canais</strong><span data-i18n="factors.channels.copy">amplia alcance</span></div>
+      </article>
+      <article class="factor">
+        <i data-lucide="chart-column-big"></i>
+        <div><strong data-i18n="factors.insertions.title">Mais inserções</strong><span data-i18n="factors.insertions.copy">aumenta frequência</span></div>
+      </article>
+      <article class="factor">
+        <i data-lucide="star"></i>
+        <div><strong data-i18n="factors.formats.title">Formatos premium</strong><span data-i18n="factors.formats.copy">eleva o investimento</span></div>
+      </article>
+    </section>
+
+    <section class="cta-strip" aria-label="Contato" data-i18n-aria-label="cta.ariaLabel">
+      <div class="cta-icon"><i data-lucide="handshake"></i></div>
+      <h2 class="cta-title" data-i18n="cta.title">Montamos uma proposta sob medida.</h2>
+      <a class="outline-button" href="mailto:partners@bloxstoriespartners.com" data-i18n="cta.button">Schedule a call</a>
+    </section>
+
+    <footer class="footer-note">
+      <span data-i18n="footer.brand">Blox Stories Channel Network | Daniel Alborghetti</span>
+      <span>partners@bloxstoriespartners.com | linkedin.com/in/daniel-alborghetti</span>
+    </footer>
+  </main>
+
+  <script>
+    const translations = {
+      pt: {
+        meta: { lang: "pt-BR", title: "Blox Stories | Parcerias" },
+        language: { ariaLabel: "Selecionar idioma" },
+        brand: { subtitle: "Rede de Canais" },
+        nav: { ariaLabel: "Navegação principal", home: "Início", channels: "Canais", partnerships: "Parcerias" },
+        hero: {
+          title: "Parcerias <span class=\"green-text\">para Marcas</span>",
+          copy: "Sua marca pode patrocinar um canal específico ou toda a nossa rede.",
+          note: "Dois formatos simples. O investimento varia conforme canais, volume de inserções e formato.",
+        },
+        options: { title: "2 opções de parceria" },
+        plans: {
+          ariaLabel: "Planos de parceria",
+          ideal: "Ideal para:",
+          price: "O preço varia por:",
+          single: {
+            name: "Plano Canal Único",
+            copy: "Patrocínio em um canal específico.",
+            badge: "1 canal",
+            ideal1: "testes",
+            ideal2: "lançamentos",
+            ideal3: "campanhas pontuais",
+            price1: "canal escolhido",
+            price2: "nº de inserções",
+            price3: "formato do anúncio",
+            price4: "duração",
+            metric1: "1 inserção",
+            metric2: "3 inserções",
+            metric3: "5+ inserções",
+            button: "Solicitar proposta",
+          },
+          network: {
+            name: "Plano Network",
+            copy: "Patrocínio distribuído em vários canais da rede.",
+            badge: "across the network",
+            ideal1: "awareness",
+            ideal2: "escala",
+            ideal3: "presença contínua",
+            price1: "nº de canais",
+            price2: "nº total de inserções",
+            price3: "mix Minecraft + Reddit Stories",
+            price4: "recorrência",
+            metric1: "2 canais",
+            metric2: "4 canais",
+            metric3: "rede ampla",
+            button: "Falar com nossa equipe",
+          },
+        },
+        factors: {
+          ariaLabel: "Como o investimento aumenta ou diminui",
+          title: "Como o investimento aumenta ou diminui",
+          channels: { title: "Mais canais", copy: "amplia alcance" },
+          insertions: { title: "Mais inserções", copy: "aumenta frequência" },
+          formats: { title: "Formatos premium", copy: "eleva o investimento" },
+        },
+        cta: {
+          top: "Fale conosco",
+          ariaLabel: "Contato",
+          title: "Montamos uma proposta sob medida.",
+          button: "Agendar conversa",
+        },
+        footer: { brand: "Blox Stories Rede de Canais | Daniel Alborghetti" },
+      },
+      en: {
+        meta: { lang: "en", title: "Blox Stories | Partnerships" },
+        language: { ariaLabel: "Select language" },
+        brand: { subtitle: "Channel Network" },
+        nav: { ariaLabel: "Primary navigation", home: "Home", channels: "Channels", partnerships: "Partnerships" },
+        hero: {
+          title: "Partnerships <span class=\"green-text\">for Brands</span>",
+          copy: "Your brand can sponsor a specific channel or the entire network.",
+          note: "Two simple formats. Investment varies by channels, insertion volume, and format.",
+        },
+        options: { title: "2 partnership options" },
+        plans: {
+          ariaLabel: "Partnership plans",
+          ideal: "Best for:",
+          price: "Pricing varies by:",
+          single: {
+            name: "Single Channel Plan",
+            copy: "Sponsorship on one specific channel.",
+            badge: "1 channel",
+            ideal1: "tests",
+            ideal2: "launches",
+            ideal3: "one-off campaigns",
+            price1: "selected channel",
+            price2: "number of insertions",
+            price3: "ad format",
+            price4: "duration",
+            metric1: "1 insertion",
+            metric2: "3 insertions",
+            metric3: "5+ insertions",
+            button: "Request proposal",
+          },
+          network: {
+            name: "Network Plan",
+            copy: "Sponsorship distributed across several network channels.",
+            badge: "across the network",
+            ideal1: "awareness",
+            ideal2: "scale",
+            ideal3: "continuous presence",
+            price1: "number of channels",
+            price2: "total number of insertions",
+            price3: "Minecraft + Reddit Stories mix",
+            price4: "recurrence",
+            metric1: "2 channels",
+            metric2: "4 channels",
+            metric3: "wide network",
+            button: "Talk to our team",
+          },
+        },
+        factors: {
+          ariaLabel: "How investment increases or decreases",
+          title: "How investment increases or decreases",
+          channels: { title: "More channels", copy: "expands reach" },
+          insertions: { title: "More insertions", copy: "raises frequency" },
+          formats: { title: "Premium formats", copy: "increase investment" },
+        },
+        cta: {
+          top: "Contact us",
+          ariaLabel: "Contact",
+          title: "We build a tailored proposal.",
+          button: "Schedule a call",
+        },
+        footer: { brand: "Blox Stories Channel Network | Daniel Alborghetti" },
+      },
+      es: {
+        meta: { lang: "es", title: "Blox Stories | Alianzas" },
+        language: { ariaLabel: "Seleccionar idioma" },
+        brand: { subtitle: "Red de Canales" },
+        nav: { ariaLabel: "Navegación principal", home: "Inicio", channels: "Canales", partnerships: "Alianzas" },
+        hero: {
+          title: "Alianzas <span class=\"green-text\">para Marcas</span>",
+          copy: "Tu marca puede patrocinar un canal específico o toda nuestra red.",
+          note: "Dos formatos simples. La inversión varía según canales, volumen de inserciones y formato.",
+        },
+        options: { title: "2 opciones de alianza" },
+        plans: {
+          ariaLabel: "Planes de alianza",
+          ideal: "Ideal para:",
+          price: "El precio varía por:",
+          single: {
+            name: "Plan Canal Único",
+            copy: "Patrocinio en un canal específico.",
+            badge: "1 canal",
+            ideal1: "tests",
+            ideal2: "lanzamientos",
+            ideal3: "campañas puntuales",
+            price1: "canal elegido",
+            price2: "nº de inserciones",
+            price3: "formato del anuncio",
+            price4: "duración",
+            metric1: "1 inserción",
+            metric2: "3 inserciones",
+            metric3: "5+ inserciones",
+            button: "Solicitar propuesta",
+          },
+          network: {
+            name: "Plan Network",
+            copy: "Patrocinio distribuido en varios canales de la red.",
+            badge: "across the network",
+            ideal1: "awareness",
+            ideal2: "escala",
+            ideal3: "presencia continua",
+            price1: "nº de canales",
+            price2: "nº total de inserciones",
+            price3: "mix Minecraft + Reddit Stories",
+            price4: "recurrencia",
+            metric1: "2 canales",
+            metric2: "4 canales",
+            metric3: "red amplia",
+            button: "Hablar con nuestro equipo",
+          },
+        },
+        factors: {
+          ariaLabel: "Cómo la inversión aumenta o disminuye",
+          title: "Cómo la inversión aumenta o disminuye",
+          channels: { title: "Más canales", copy: "amplía alcance" },
+          insertions: { title: "Más inserciones", copy: "aumenta frecuencia" },
+          formats: { title: "Formatos premium", copy: "elevan la inversión" },
+        },
+        cta: {
+          top: "Contáctanos",
+          ariaLabel: "Contacto",
+          title: "Montamos una propuesta a medida.",
+          button: "Agendar conversación",
+        },
+        footer: { brand: "Blox Stories Red de Canales | Daniel Alborghetti" },
+      },
+    };
+
+    const languageNames = { pt: "Português", en: "English", es: "Español" };
+    const DEFAULT_LANGUAGE = "en";
+    const LANGUAGE_STORAGE_KEY = "bloxStoriesLanguage";
+
+    function getTranslation(lang, key) {
+      return key.split(".").reduce((value, part) => value?.[part], translations[lang]);
+    }
+
+    function applyLanguage(lang) {
+      const activeLang = translations[lang] ? lang : DEFAULT_LANGUAGE;
+      const t = translations[activeLang];
+
+      document.documentElement.lang = t.meta.lang;
+      document.title = t.meta.title;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = getTranslation(activeLang, element.dataset.i18n);
+        if (typeof value === "string") {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        const value = getTranslation(activeLang, element.dataset.i18nHtml);
+        if (typeof value === "string") {
+          element.innerHTML = value;
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const value = getTranslation(activeLang, element.dataset.i18nAriaLabel);
+        if (typeof value === "string") {
+          element.setAttribute("aria-label", value);
+        }
+      });
+
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        const isActive = button.dataset.lang === activeLang;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+        button.setAttribute("aria-label", languageNames[button.dataset.lang]);
+      });
+
+      try {
+        localStorage.setItem(LANGUAGE_STORAGE_KEY, activeLang);
+        localStorage.removeItem("blockStoriesLanguage");
+      } catch (error) {
+        // The page still works when local storage is unavailable.
+      }
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+    let savedLanguage = DEFAULT_LANGUAGE;
+    try {
+      savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || DEFAULT_LANGUAGE;
+    } catch (error) {
+      savedLanguage = DEFAULT_LANGUAGE;
+    }
+
+    const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+    applyLanguage(urlLanguage || savedLanguage);
+  </script>
+</body>
+</html>

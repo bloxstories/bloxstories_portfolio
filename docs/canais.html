@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blox Stories | Channels</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #060808;
+      --panel: rgba(14, 18, 18, 0.84);
+      --panel-strong: rgba(17, 22, 21, 0.94);
+      --line: rgba(139, 160, 99, 0.24);
+      --line-strong: rgba(255, 255, 255, 0.12);
+      --line-bright: rgba(174, 205, 103, 0.58);
+      --text: #f0f3ed;
+      --muted: #b4b9ad;
+      --soft: #788072;
+      --green: #a8c957;
+      --orange: #ff7b2c;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      background:
+        linear-gradient(180deg, rgba(6, 8, 8, 0.86), rgba(6, 8, 8, 0.98)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.016) 0, rgba(255, 255, 255, 0.016) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0, rgba(255, 255, 255, 0.012) 1px, transparent 1px, transparent 80px),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .shell {
+      width: min(1516px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 7, 8, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 220px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(255, 255, 255, 0.88);
+      border-radius: 8px;
+      color: var(--text);
+      transform: rotate(45deg);
+    }
+
+    .brand-mark i,
+    .brand-mark svg {
+      width: 21px;
+      height: 21px;
+      transform: rotate(-45deg);
+    }
+
+    .brand-title {
+      display: block;
+      font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 0.92;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(24px, 4vw, 58px);
+      color: #d8dcd4;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 24px 0 21px;
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      height: 2px;
+      background: var(--green);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid rgba(174, 205, 103, 0.38);
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .lang-button {
+      min-width: 34px;
+      min-height: 30px;
+      border: 0;
+      border-radius: 3px;
+      color: #d8dcd4;
+      background: transparent;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .lang-button.is-active {
+      color: #071009;
+      background: var(--green);
+    }
+
+    .contact-button {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-bright);
+      border-radius: 5px;
+      padding: 0 28px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: rgba(168, 201, 87, 0.03);
+    }
+
+    .page-hero {
+      padding: 24px 0 8px;
+      background:
+        linear-gradient(90deg, rgba(6, 8, 8, 1) 0%, rgba(6, 8, 8, 0.9) 38%, rgba(6, 8, 8, 0.54) 64%, rgba(6, 8, 8, 0.92) 100%),
+        url("./assets/hero-scene.png");
+      background-size: min(1180px, 76vw) auto;
+      background-position: right 46%;
+      background-repeat: no-repeat;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(360px, 0.92fr) minmax(520px, 1.38fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: #eef1eb;
+      font-family: "Sora", ui-sans-serif, system-ui, sans-serif;
+      font-size: clamp(42px, 4.2vw, 56px);
+      font-weight: 700;
+      line-height: 0.92;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.72);
+    }
+
+    .eyebrow .green-text {
+      color: var(--green);
+    }
+
+    .hero-copy {
+      max-width: 640px;
+      margin: 10px 0 16px;
+      color: #d7dbd4;
+      font-size: 15px;
+      line-height: 1.44;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-button {
+      min-width: 82px;
+      min-height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 7px;
+      color: #d8dcd4;
+      background: rgba(7, 11, 11, 0.76);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .filter-button.is-active {
+      color: #f8fbf2;
+      border-color: var(--line-bright);
+      background: rgba(168, 201, 87, 0.12);
+    }
+
+    .summary-band {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 7px;
+      background: linear-gradient(180deg, rgba(19, 24, 23, 0.89), rgba(12, 16, 16, 0.82));
+      box-shadow: var(--shadow);
+    }
+
+    .summary-item {
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 22px;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .summary-item:last-child {
+      border-right: 0;
+    }
+
+    .summary-item i,
+    .summary-item svg {
+      width: 32px;
+      height: 32px;
+      color: var(--green);
+      stroke-width: 1.7;
+    }
+
+    .summary-value {
+      margin: 0;
+      color: #f3f5ee;
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .summary-label {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    main {
+      padding: 12px 0 28px;
+    }
+
+    .channel-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .channel-row {
+      display: grid;
+      grid-template-columns: 210px minmax(210px, 1fr) minmax(210px, 1.08fr) minmax(210px, 1fr) 112px 118px minmax(240px, 1.38fr);
+      min-height: 118px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 7px;
+      background: linear-gradient(90deg, rgba(13, 18, 18, 0.96), rgba(8, 12, 12, 0.9));
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .cover {
+      position: relative;
+      min-height: 118px;
+      background: var(--cover) right center / cover no-repeat;
+    }
+
+    .channel-main,
+    .metric-panel,
+    .audience-panel,
+    .language-panel,
+    .formats-panel,
+    .samples-panel {
+      padding: 12px 16px;
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .channel-name {
+      margin: 0;
+      color: #f2f4ee;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.12;
+    }
+
+    .handle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 8px;
+      border: 1px solid rgba(168, 201, 87, 0.56);
+      border-radius: 4px;
+      padding: 2px 8px;
+      color: #eaffb9;
+      background: rgba(88, 121, 44, 0.32);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tag.lang-es {
+      color: #ffd0ad;
+      border-color: rgba(255, 123, 44, 0.62);
+      background: rgba(180, 73, 18, 0.26);
+    }
+
+    .tag.lang-pt {
+      color: #eaffb9;
+      border-color: rgba(168, 201, 87, 0.56);
+      background: rgba(88, 121, 44, 0.32);
+    }
+
+    .tag.lang-fr {
+      color: #d4e8ff;
+      border-color: rgba(125, 171, 235, 0.58);
+      background: rgba(38, 70, 112, 0.3);
+    }
+
+    .tag.lang-de {
+      color: #ffe0a0;
+      border-color: rgba(255, 194, 86, 0.58);
+      background: rgba(116, 81, 24, 0.32);
+    }
+
+    .tag.orange {
+      color: #ffd0ad;
+      border-color: rgba(255, 123, 44, 0.62);
+      background: rgba(180, 73, 18, 0.26);
+    }
+
+    .description {
+      margin: 7px 0 0;
+      color: #cfd4ca;
+      font-size: 11px;
+      line-height: 1.32;
+    }
+
+    .panel-title {
+      margin: 0 0 8px;
+      color: #e9ece5;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 12px;
+    }
+
+    .metric {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric i,
+    .metric svg {
+      width: 20px;
+      height: 20px;
+      color: var(--green);
+      stroke-width: 1.7;
+    }
+
+    .metric strong {
+      display: block;
+      color: #f2f4ee;
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.15;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .donut {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: conic-gradient(var(--green) 0 31%, var(--orange) 31% 60%, #66745a 60% 100%);
+      position: relative;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      background: #0d1110;
+    }
+
+    .audience-lines {
+      display: grid;
+      gap: 4px;
+      color: #d7dbd4;
+      font-size: 9px;
+    }
+
+    .audience-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .swatch {
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .swatch.orange { background: var(--orange); }
+    .swatch.gray { background: #66745a; }
+
+    .gender-split {
+      display: flex;
+      gap: 12px;
+      margin-top: 5px;
+      color: #dfe3db;
+      font-size: 9px;
+    }
+
+    .gender-split strong {
+      color: #f3f5ee;
+      font-size: 13px;
+    }
+
+    .language-list,
+    .format-list {
+      display: grid;
+      gap: 6px;
+      color: #dfe3db;
+      font-size: 11px;
+    }
+
+    .flag {
+      margin-left: 6px;
+    }
+
+    .format-pill {
+      width: fit-content;
+      border: 1px solid rgba(168, 201, 87, 0.56);
+      border-radius: 4px;
+      padding: 2px 9px;
+      color: #dcefb2;
+      background: rgba(168, 201, 87, 0.08);
+      font-size: 11px;
+    }
+
+    .signal-list,
+    .sample-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #d8dcd4;
+      font-size: 10px;
+      line-height: 1.32;
+    }
+
+    .signal-list li,
+    .sample-list li {
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .signal-list li::before,
+    .sample-list li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(168, 201, 87, 0.08);
+    }
+
+    .sample-list span {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 78px 1fr auto;
+      align-items: center;
+      gap: 28px;
+      margin-top: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 7px;
+      background: linear-gradient(90deg, rgba(17, 22, 21, 0.96), rgba(10, 14, 14, 0.9));
+      padding: 21px 38px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .cta-icon {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #f1f5ed;
+      background: rgba(111, 131, 61, 0.48);
+    }
+
+    .cta-icon i,
+    .cta-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .cta p {
+      margin: 4px 0 0;
+      max-width: 700px;
+      color: #d4d8d0;
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0 26px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    @media (max-width: 1320px) {
+      .channel-row {
+        grid-template-columns: 190px 1fr 1fr;
+      }
+
+      .audience-panel,
+      .language-panel,
+      .formats-panel,
+      .samples-panel {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .samples-panel {
+        grid-column: span 3;
+      }
+    }
+
+    @media (max-width: 1020px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .summary-band {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .summary-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .summary-item:nth-child(n+3) {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .channel-row {
+        grid-template-columns: 190px 1fr;
+      }
+
+      .metric-panel,
+      .audience-panel,
+      .language-panel,
+      .formats-panel,
+      .samples-panel {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .samples-panel {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(1516px, calc(100% - 28px));
+      }
+
+      .nav {
+        height: auto;
+        padding: 14px 0;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-title {
+        font-size: 18px;
+      }
+
+      .nav-actions {
+        width: 100%;
+        margin-left: 51px;
+        justify-content: flex-start;
+      }
+
+      .nav-actions > .contact-button {
+        display: none !important;
+      }
+
+      .lang-button {
+        min-width: 30px;
+        min-height: 28px;
+      }
+
+      .page-hero {
+        padding-top: 24px;
+      }
+
+      .hero-copy {
+        max-width: 320px;
+      }
+
+      .filters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .filter-button {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .filter-button:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .summary-band {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-item,
+      .summary-item:nth-child(2),
+      .summary-item:nth-child(n+3) {
+        border-right: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .summary-item:first-child {
+        border-top: 0;
+      }
+
+      .channel-row {
+        grid-template-columns: 1fr;
+      }
+
+      .cover {
+        min-height: 190px;
+      }
+
+      .channel-main,
+      .metric-panel,
+      .audience-panel,
+      .language-panel,
+      .formats-panel,
+      .samples-panel {
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .samples-panel {
+        grid-column: auto;
+      }
+
+      .cta {
+        grid-template-columns: 1fr;
+        padding: 22px;
+      }
+
+      .footer-note {
+        flex-direction: column;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="./assets/shared-header.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="./index.html" aria-label="Blox Stories">
+        <span class="brand-mark"><i data-lucide="box"></i></span>
+        <span>
+          <strong class="brand-title">Blox Stories</strong>
+          <span class="brand-subtitle" data-i18n="brand.subtitle">Channel Network</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation" data-i18n-aria-label="nav.ariaLabel">
+        <a href="./index.html" data-i18n="nav.home">Home</a>
+        <a class="active" href="./canais.html" data-i18n="nav.channels">Channels</a>
+        <a href="./parcerias.html" data-i18n="nav.partnerships">Partnerships</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="language-toggle" role="group" aria-label="Select language" data-i18n-aria-label="language.ariaLabel">
+          <button class="lang-button" type="button" data-lang="pt" aria-pressed="false">PT</button>
+          <button class="lang-button is-active" type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang-button" type="button" data-lang="es" aria-pressed="false">ES</button>
+        </div>
+        <a class="contact-button" href="mailto:partners@bloxstoriespartners.com" data-i18n="cta.top">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="shell hero-grid">
+      <div>
+        <h1 class="eyebrow" data-i18n-html="hero.title">Nossos <span class="green-text">Canais</span></h1>
+        <p class="hero-copy" data-i18n="hero.copy">
+          Explore nosso portfólio de canais com informações detalhadas sobre performance, perfil da audiência, idioma, formatos e exemplos de conteúdos.
+        </p>
+        <div class="filters" aria-label="Filtros de canais" data-i18n-aria-label="filters.ariaLabel">
+          <button class="filter-button is-active" type="button" data-filter="all" data-i18n="filters.all">Todos</button>
+          <button class="filter-button" type="button" data-filter="es">ES</button>
+          <button class="filter-button" type="button" data-filter="pt">PT-BR</button>
+          <button class="filter-button" type="button" data-filter="fr">FR</button>
+          <button class="filter-button" type="button" data-filter="en-de">EN/DE</button>
+        </div>
+      </div>
+
+      <section class="summary-band" aria-label="Resumo dos canais" data-i18n-aria-label="summary.ariaLabel">
+        <article class="summary-item">
+          <i data-lucide="radio"></i>
+          <div>
+            <p class="summary-value">4</p>
+            <p class="summary-label" data-i18n="summary.channels">Canais ativos</p>
+          </div>
+        </article>
+        <article class="summary-item">
+          <i data-lucide="users-round"></i>
+          <div>
+            <p class="summary-value" data-i18n="summary.subscribersValue">1.13M+</p>
+            <p class="summary-label" data-i18n="summary.subscribers">Inscritos públicos</p>
+          </div>
+        </article>
+        <article class="summary-item">
+          <i data-lucide="globe-2"></i>
+          <div>
+            <p class="summary-value">4</p>
+            <p class="summary-label" data-i18n="summary.languages">Idiomas/mercados</p>
+          </div>
+        </article>
+        <article class="summary-item">
+          <i data-lucide="clock-3"></i>
+          <div>
+            <p class="summary-value" data-i18n="summary.durationValue">14-71m</p>
+            <p class="summary-label" data-i18n="summary.duration">Duração típica</p>
+          </div>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <main class="shell">
+    <section class="channel-list" id="channelList" aria-label="Lista de canais" data-i18n-aria-label="channels.ariaLabel"></section>
+
+    <section class="cta" aria-label="Contato" data-i18n-aria-label="cta.ariaLabel">
+      <div class="cta-icon"><i data-lucide="handshake"></i></div>
+      <div>
+        <h2 data-i18n="cta.title">Quer ativar sua marca em nossos canais?</h2>
+        <p data-i18n="cta.copy">
+          Fale com nossa equipe e descubra oportunidades personalizadas para conectar sua marca com audiências engajadas e conteúdos de alta performance.
+        </p>
+      </div>
+      <a class="contact-button" href="mailto:partners@bloxstoriespartners.com" data-i18n="cta.button">Falar com nossa equipe</a>
+    </section>
+
+    <footer class="footer-note">
+      <span data-i18n="footer.brand">Blox Stories Channel Network | Daniel Alborghetti</span>
+      <span>partners@bloxstoriespartners.com | linkedin.com/in/daniel-alborghetti</span>
+    </footer>
+  </main>
+
+  <script>
+    const channelData = [
+      {
+        key: "reddicuentos",
+        category: "es",
+        cover: "./assets/home-card-reddicuentos.png",
+        stats: { subs: "604K", totalViews: "798M+", duration: "26-69m", sample: "5+" },
+        flags: ["🇪🇸"],
+        sourceUrl: "https://www.youtube.com/@Reddicuentos",
+      },
+      {
+        key: "cara",
+        category: "pt",
+        cover: "./assets/home-card-cara-reddit.png",
+        stats: { subs: "391K", totalViews: "4.8M+", duration: "14-55m", sample: "20" },
+        flags: ["🇧🇷"],
+        sourceUrl: "https://www.youtube.com/@CaraDoReddit",
+      },
+      {
+        key: "chroniques",
+        category: "fr",
+        cover: "./assets/home-card-chroniques.png",
+        stats: { subs: "96.2K", totalViews: "119M+", duration: "23-66m", sample: "5+" },
+        flags: ["🇫🇷", "🇺🇸"],
+        sourceUrl: "https://www.youtube.com/@ChroniquesCachées1",
+      },
+      {
+        key: "stille",
+        category: "en-de",
+        cover: "./assets/home-card-stille.png",
+        stats: { subs: "45.4K", totalViews: "122M+", duration: "27-71m", sample: "5+" },
+        flags: ["🇺🇸", "🇩🇪"],
+        sourceUrl: "https://www.youtube.com/@StilleStories",
+      },
+    ];
+
+    const translations = {
+      pt: {
+        meta: { lang: "pt-BR", title: "Blox Stories | Canais" },
+        brand: { subtitle: "Rede de Canais" },
+        language: { ariaLabel: "Selecionar idioma" },
+        nav: { ariaLabel: "Navegação principal", home: "Início", channels: "Canais", partnerships: "Parcerias" },
+        hero: {
+          title: "Nossos <span class=\"green-text\">Canais</span>",
+          copy: "Portfólio real de canais de relatos estilo Reddit, com visual Minecraft/block world, idiomas atendidos e sinais públicos coletados no YouTube.",
+        },
+        filters: { ariaLabel: "Filtros por idioma", all: "Todos" },
+        summary: {
+          ariaLabel: "Resumo dos canais",
+          channels: "Canais reais",
+          subscribersValue: "1,13M+",
+          subscribers: "Inscritos públicos",
+          languages: "Idiomas/mercados",
+          durationValue: "14-71m",
+          duration: "Duração típica",
+        },
+        labels: {
+          performance: "Dados públicos",
+          editorial: "Diferencial editorial",
+          language: "Idioma",
+          formats: "Formatos",
+          samples: "Vídeos recentes",
+          subscribers: "inscritos",
+          totalViews: "views totais",
+          duration: "duração",
+          sample: "amostra",
+        },
+        channels: {
+          ariaLabel: "Lista de canais",
+          reddicuentos: {
+            name: "Reddicuentos",
+            handle: "@Reddicuentos",
+            tag: "ES · Espanhol",
+            description: "Canal em espanhol com relatos longos, títulos dramáticos e alta base pública de inscritos.",
+            languages: ["Espanhol"],
+            formats: ["Relatos longos", "Drama familiar", "AskReddit"],
+            signals: ["Perguntas familiares universais que geram identificação imediata", "Conflitos de casa, escola e casamento com escalada moral clara", "Promessa editorial explícita de relato completo, não só clipe ou resumo"],
+            samples: ["¿Cuál es la regla familiar más peligrosa que tuviste al crecer?", "¿Qué castigo usó tu familia que no te diste cuenta que era ilegal?", "Mi compañera de universidad anunció en mi recepción de bodas..."],
+          },
+          cara: {
+            name: "O Cara do Reddit",
+            handle: "@CaraDoReddit",
+            tag: "PT-BR · Português",
+            description: "Canal em português do Brasil com base pública robusta, relatos longos e títulos de alto conflito familiar/social.",
+            languages: ["Português"],
+            formats: ["Narrativa PT-BR", "Conflito social", "Longos"],
+            signals: ["Títulos confessionais em primeira pessoa com promessa clara de virada", "Conflitos domésticos de alto reconhecimento: casamento, pais, casa, aluguel e família", "Biblioteca ampla, com 82 vídeos públicos mapeados e frequência recente consistente"],
+            samples: ["Meu marido disse que ia levar tudo, mas eu já tinha feito as contas.", "Meus pais me expulsaram de casa, então comprei secretamente a casa deles...", "Fui expulsa de casa no dia do meu aniversário, e agora minha família quer minha casa nova!"],
+          },
+          chroniques: {
+            name: "Chroniques Cachées",
+            handle: "@ChroniquesCachées1",
+            tag: "FR · Francês",
+            description: "Canal de crônicas e relatos longos com presença em francês e inglês, focado em drama familiar, traição e viradas emocionais.",
+            languages: ["Francês", "Inglês"],
+            formats: ["FR + EN", "Drama emocional", "Longos"],
+            signals: ["Melodrama adulto: herança, casamento, humilhação pública e traição", "Títulos em cena direta, quase como diálogo de novela moral", "Ponte editorial entre audiência francófona e títulos longos em inglês"],
+            samples: ["Mon père a dîné 3 ans sans voir que mon assiette restait vide.", "Mon mari m’a frappée à la bouche devant ses collègues...", "My family excluded me from the holidays; I took a luxury trip..."],
+          },
+          stille: {
+            name: "Stille Stories",
+            handle: "@StilleStories",
+            tag: "EN/DE · Bilíngue",
+            description: "Canal com histórias longas em inglês e alemão, atmosfera mais sóbria e temas de família, herança, vingança e reconstrução.",
+            languages: ["Inglês", "Alemão"],
+            formats: ["EN + DE", "Tom sóbrio", "Longos"],
+            signals: ["Tom mais frio e adulto, com conflitos legais, patrimônio e casa de família", "Arcos de sobrevivência: perder tudo, retomar controle e reconstruir a vida", "Menos choque gratuito; mais reparação, tribunal e virada tardia"],
+            samples: ["My ex's new wife wanted to kick me out, but I turned the tables.", "Meine Stiefmutter kam zu meinem Nüchtern-Jahrestag betrunken.", "My adoptive parents wanted to exploit my uterus..."],
+          },
+        },
+        cta: {
+          top: "Fale conosco",
+          ariaLabel: "Contato",
+          title: "Quer ativar sua marca nesses canais?",
+          copy: "Fale com nossa equipe e descubra oportunidades personalizadas para conectar sua marca com audiências de relatos longos em múltiplos idiomas.",
+          button: "Falar com nossa equipe",
+        },
+        footer: { brand: "Blox Stories Rede de Canais | Daniel Alborghetti" },
+      },
+      en: {
+        meta: { lang: "en", title: "Blox Stories | Channels" },
+        brand: { subtitle: "Channel Network" },
+        language: { ariaLabel: "Select language" },
+        nav: { ariaLabel: "Primary navigation", home: "Home", channels: "Channels", partnerships: "Partnerships" },
+        hero: {
+          title: "Our <span class=\"green-text\">Channels</span>",
+          copy: "Real Reddit-style narration channel portfolio with a Minecraft/block-world visual system, language coverage, and public YouTube signals.",
+        },
+        filters: { ariaLabel: "Language filters", all: "All" },
+        summary: {
+          ariaLabel: "Channel summary",
+          channels: "Real channels",
+          subscribersValue: "1.13M+",
+          subscribers: "Public subscribers",
+          languages: "Languages/markets",
+          durationValue: "14-71m",
+          duration: "Typical duration",
+        },
+        labels: {
+          performance: "Public data",
+          editorial: "Editorial edge",
+          language: "Language",
+          formats: "Formats",
+          samples: "Recent videos",
+          subscribers: "subscribers",
+          totalViews: "total views",
+          duration: "duration",
+          sample: "sample",
+        },
+        channels: {
+          ariaLabel: "Channel list",
+          reddicuentos: {
+            name: "Reddicuentos",
+            handle: "@Reddicuentos",
+            tag: "ES · Spanish",
+            description: "Spanish long-form narration channel built around dramatic titles and a large public subscriber base.",
+            languages: ["Spanish"],
+            formats: ["Long narration", "Family drama", "AskReddit"],
+            signals: ["Universal family questions that create instant recognition", "Home, school, and wedding conflicts with clear moral escalation", "Explicit complete-story promise, not just a clip or short summary"],
+            samples: ["¿Cuál es la regla familiar más peligrosa que tuviste al crecer?", "¿Qué castigo usó tu familia que no te diste cuenta que era ilegal?", "Mi compañera de universidad anunció en mi recepción de bodas..."],
+          },
+          cara: {
+            name: "O Cara do Reddit",
+            handle: "@CaraDoReddit",
+            tag: "PT-BR · Portuguese",
+            description: "Brazilian Portuguese channel with a large public subscriber base, long-form narration, and high-conflict family/social titles.",
+            languages: ["Portuguese"],
+            formats: ["PT-BR narration", "Social conflict", "Long-form"],
+            signals: ["First-person confession titles with a clear reversal promise", "Highly recognizable domestic conflicts: marriage, parents, housing, rent, and family pressure", "Broad library, with 82 public videos mapped and consistent recent publishing"],
+            samples: ["Meu marido disse que ia levar tudo, mas eu já tinha feito as contas.", "Meus pais me expulsaram de casa, então comprei secretamente a casa deles...", "Fui expulsa de casa no dia do meu aniversário, e agora minha família quer minha casa nova!"],
+          },
+          chroniques: {
+            name: "Chroniques Cachées",
+            handle: "@ChroniquesCachées1",
+            tag: "FR · French",
+            description: "Long-form chronicle channel in French and English, focused on family drama, betrayal, and emotional reversals.",
+            languages: ["French", "English"],
+            formats: ["FR + EN", "Emotional drama", "Long-form"],
+            signals: ["Adult melodrama: inheritance, marriage, public humiliation, and betrayal", "Scene-first titles that read like direct moral-soap dialogue", "Editorial bridge between francophone viewers and long English titles"],
+            samples: ["Mon père a dîné 3 ans sans voir que mon assiette restait vide.", "Mon mari m’a frappée à la bouche devant ses collègues...", "My family excluded me from the holidays; I took a luxury trip..."],
+          },
+          stille: {
+            name: "Stille Stories",
+            handle: "@StilleStories",
+            tag: "EN/DE · Bilingual",
+            description: "Sober long-form story channel in English and German, covering family, inheritance, revenge, and recovery themes.",
+            languages: ["English", "German"],
+            formats: ["EN + DE", "Sober tone", "Long-form"],
+            signals: ["Cooler adult tone built around legal, property, and family-home conflicts", "Survival arcs: losing everything, regaining control, rebuilding life", "Less cheap shock; more repair, courtrooms, and late reversals"],
+            samples: ["My ex's new wife wanted to kick me out, but I turned the tables.", "Meine Stiefmutter kam zu meinem Nüchtern-Jahrestag betrunken.", "My adoptive parents wanted to exploit my uterus..."],
+          },
+        },
+        cta: {
+          top: "Contact us",
+          ariaLabel: "Contact",
+          title: "Want to activate your brand across these channels?",
+          copy: "Talk to our team and discover tailored opportunities to connect your brand with long-form story audiences across multiple languages.",
+          button: "Talk to our team",
+        },
+        footer: { brand: "Blox Stories Channel Network | Daniel Alborghetti" },
+      },
+      es: {
+        meta: { lang: "es", title: "Blox Stories | Canales" },
+        brand: { subtitle: "Red de Canales" },
+        language: { ariaLabel: "Seleccionar idioma" },
+        nav: { ariaLabel: "Navegación principal", home: "Inicio", channels: "Canales", partnerships: "Alianzas" },
+        hero: {
+          title: "Nuestros <span class=\"green-text\">Canales</span>",
+          copy: "Portafolio real de canales de relatos estilo Reddit, con visual Minecraft/block world, idiomas atendidos y señales públicas de YouTube.",
+        },
+        filters: { ariaLabel: "Filtros por idioma", all: "Todos" },
+        summary: {
+          ariaLabel: "Resumen de canales",
+          channels: "Canales reales",
+          subscribersValue: "1,13M+",
+          subscribers: "Suscriptores públicos",
+          languages: "Idiomas/mercados",
+          durationValue: "14-71m",
+          duration: "Duración típica",
+        },
+        labels: {
+          performance: "Datos públicos",
+          editorial: "Diferencial editorial",
+          language: "Idioma",
+          formats: "Formatos",
+          samples: "Videos recientes",
+          subscribers: "suscriptores",
+          totalViews: "views totales",
+          duration: "duración",
+          sample: "muestra",
+        },
+        channels: {
+          ariaLabel: "Lista de canales",
+          reddicuentos: {
+            name: "Reddicuentos",
+            handle: "@Reddicuentos",
+            tag: "ES · Español",
+            description: "Canal en español con relatos largos, títulos dramáticos y una gran base pública de suscriptores.",
+            languages: ["Español"],
+            formats: ["Narración larga", "Drama familiar", "AskReddit"],
+            signals: ["Preguntas familiares universales que generan identificación inmediata", "Conflictos de casa, escuela y boda con escalada moral clara", "Promesa editorial explícita de relato completo, no solo clip o resumen"],
+            samples: ["¿Cuál es la regla familiar más peligrosa que tuviste al crecer?", "¿Qué castigo usó tu familia que no te diste cuenta que era ilegal?", "Mi compañera de universidad anunció en mi recepción de bodas..."],
+          },
+          cara: {
+            name: "O Cara do Reddit",
+            handle: "@CaraDoReddit",
+            tag: "PT-BR · Portugués",
+            description: "Canal brasileño con una gran base pública, relatos largos y títulos de alto conflicto familiar/social.",
+            languages: ["Portugués"],
+            formats: ["Narración PT-BR", "Conflicto social", "Largos"],
+            signals: ["Títulos confesionales en primera persona con promesa clara de giro", "Conflictos domésticos muy reconocibles: matrimonio, padres, casa, alquiler y familia", "Biblioteca amplia, con 82 videos públicos mapeados y publicación reciente consistente"],
+            samples: ["Meu marido disse que ia levar tudo, mas eu já tinha feito as contas.", "Meus pais me expulsaram de casa, então comprei secretamente a casa deles...", "Fui expulsa de casa no dia do meu aniversário, e agora minha família quer minha casa nova!"],
+          },
+          chroniques: {
+            name: "Chroniques Cachées",
+            handle: "@ChroniquesCachées1",
+            tag: "FR · Francés",
+            description: "Canal de crónicas largas en francés e inglés, enfocado en drama familiar, traición y giros emocionales.",
+            languages: ["Francés", "Inglés"],
+            formats: ["FR + EN", "Drama emocional", "Largos"],
+            signals: ["Melodrama adulto: herencia, matrimonio, humillación pública y traición", "Títulos en escena directa, casi como diálogo de novela moral", "Puente editorial entre audiencia francófona y títulos largos en inglés"],
+            samples: ["Mon père a dîné 3 ans sans voir que mon assiette restait vide.", "Mon mari m’a frappée à la bouche devant ses collègues...", "My family excluded me from the holidays; I took a luxury trip..."],
+          },
+          stille: {
+            name: "Stille Stories",
+            handle: "@StilleStories",
+            tag: "EN/DE · Bilingüe",
+            description: "Canal de historias largas en inglés y alemán, con tono sobrio y temas de familia, herencia, venganza y reconstrucción.",
+            languages: ["Inglés", "Alemán"],
+            formats: ["EN + DE", "Tono sobrio", "Largos"],
+            signals: ["Tono más frío y adulto, con conflictos legales, patrimonio y casa familiar", "Arcos de supervivencia: perderlo todo, recuperar control y reconstruir la vida", "Menos shock barato; más reparación, tribunal y giro tardío"],
+            samples: ["My ex's new wife wanted to kick me out, but I turned the tables.", "Meine Stiefmutter kam zu meinem Nüchtern-Jahrestag betrunken.", "My adoptive parents wanted to exploit my uterus..."],
+          },
+        },
+        cta: {
+          top: "Contáctanos",
+          ariaLabel: "Contacto",
+          title: "¿Quieres activar tu marca en estos canales?",
+          copy: "Habla con nuestro equipo y descubre oportunidades personalizadas para conectar tu marca con audiencias de relatos largos en múltiples idiomas.",
+          button: "Habla con nuestro equipo",
+        },
+        footer: { brand: "Blox Stories Red de Canales | Daniel Alborghetti" },
+      },
+    };
+
+    const languageNames = { pt: "Português", en: "English", es: "Español" };
+    let activeFilter = "all";
+    const DEFAULT_LANGUAGE = "en";
+    const LANGUAGE_STORAGE_KEY = "bloxStoriesLanguage";
+    let activeLang = DEFAULT_LANGUAGE;
+
+    function getTranslation(lang, key) {
+      return key.split(".").reduce((value, part) => value?.[part], translations[lang]);
+    }
+
+    function metricItem(icon, value, label) {
+      return `
+        <div class="metric">
+          <i data-lucide="${icon}"></i>
+          <div>
+            <strong>${value}</strong>
+            <span>${label}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderChannel(channel, t) {
+      const data = t.channels[channel.key];
+      const langClass = channel.category === "en-de" ? "de" : channel.category;
+      const tagClass = `tag lang-${langClass}`;
+      const formats = data.formats.map((format) => `<span class="format-pill">${format}</span>`).join("");
+      const languages = data.languages.map((language, index) => `<span>${language}<span class="flag">${channel.flags[index] || ""}</span></span>`).join("");
+      const signals = data.signals.map((signal) => `<li><span>${signal}</span></li>`).join("");
+      const samples = data.samples.map((sample) => `<li><span>${sample}</span></li>`).join("");
+
+      return `
+        <article class="channel-row" data-category="${channel.category}">
+          <a class="cover" href="${channel.sourceUrl}" target="_blank" rel="noopener noreferrer" style="--cover: url('${channel.cover}');"></a>
+          <div class="channel-main">
+            <h2 class="channel-name">${data.name}</h2>
+            <p class="handle">${data.handle}</p>
+            <span class="${tagClass}">${data.tag}</span>
+            <p class="description">${data.description}</p>
+          </div>
+          <section class="metric-panel">
+            <p class="panel-title">${t.labels.performance}</p>
+            <div class="metrics-grid">
+              ${metricItem("users-round", channel.stats.subs, t.labels.subscribers)}
+              ${metricItem("eye", channel.stats.totalViews, t.labels.totalViews)}
+              ${metricItem("clock-3", channel.stats.duration, t.labels.duration)}
+              ${metricItem("list-video", channel.stats.sample, t.labels.sample)}
+            </div>
+          </section>
+          <section class="audience-panel">
+            <p class="panel-title">${t.labels.editorial}</p>
+            <ul class="signal-list">${signals}</ul>
+          </section>
+          <section class="language-panel">
+            <p class="panel-title">${t.labels.language}</p>
+            <div class="language-list">${languages}</div>
+          </section>
+          <section class="formats-panel">
+            <p class="panel-title">${t.labels.formats}</p>
+            <div class="format-list">${formats}</div>
+          </section>
+          <section class="samples-panel">
+            <p class="panel-title">${t.labels.samples}</p>
+            <ul class="sample-list">${samples}</ul>
+          </section>
+        </article>
+      `;
+    }
+
+    function renderChannels() {
+      const t = translations[activeLang];
+      const visibleChannels = channelData.filter((channel) => activeFilter === "all" || channel.category === activeFilter);
+      document.getElementById("channelList").innerHTML = visibleChannels.map((channel) => renderChannel(channel, t)).join("");
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function applyLanguage(lang) {
+      activeLang = translations[lang] ? lang : DEFAULT_LANGUAGE;
+      const t = translations[activeLang];
+
+      document.documentElement.lang = t.meta.lang;
+      document.title = t.meta.title;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = getTranslation(activeLang, element.dataset.i18n);
+        if (typeof value === "string") element.textContent = value;
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        const value = getTranslation(activeLang, element.dataset.i18nHtml);
+        if (typeof value === "string") element.innerHTML = value;
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const value = getTranslation(activeLang, element.dataset.i18nAriaLabel);
+        if (typeof value === "string") element.setAttribute("aria-label", value);
+      });
+
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        const isActive = button.dataset.lang === activeLang;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+        button.setAttribute("aria-label", languageNames[button.dataset.lang]);
+      });
+
+      try {
+        localStorage.setItem(LANGUAGE_STORAGE_KEY, activeLang);
+        localStorage.removeItem("blockStoriesLanguage");
+      } catch (error) {
+        // The page still works when local storage is unavailable.
+      }
+
+      renderChannels();
+    }
+
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+
+    document.querySelectorAll("[data-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll("[data-filter]").forEach((item) => {
+          item.classList.toggle("is-active", item.dataset.filter === activeFilter);
+        });
+        renderChannels();
+      });
+    });
+
+    let savedLanguage = DEFAULT_LANGUAGE;
+    try {
+      savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || DEFAULT_LANGUAGE;
+    } catch (error) {
+      savedLanguage = DEFAULT_LANGUAGE;
+    }
+
+    const urlLanguage = new URLSearchParams(window.location.search).get("lang");
+    applyLanguage(urlLanguage || savedLanguage);
+  </script>
+</body>
+</html>
